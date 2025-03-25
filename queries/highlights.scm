@@ -1,35 +1,54 @@
 ; Identifiers
 (identifier) @variable
 
-; Keywords
+; Keywords and Special Words
 [
   "def"
   "import"
-  "from"
   "constant"
-  "struct"
-  "event"
+  "public"
 ] @keyword
 
-; Function definitions
+; Decorators
+(decorator 
+  "@" @punctuation.special
+  (identifier) @decorator)
+
+; Function Definitions
 (function_definition 
-  (identifier) @function)
+  name: (identifier) @function)
+
+; Parameters
+(parameter 
+  name: (identifier) @parameter
+  type: (type (identifier) @type))
 
 ; Types
-(type 
-  (identifier) @type)
+(type (identifier) @type)
 
-; Numbers
+; Literals
 (number) @number
-(decimal_number) @number
-(hex_number) @number
-(binary_number) @number
-(octal_number) @number
-(float_number) @number
-
-; Strings
 (string) @string
 
 ; Comments
 (comment) @comment
 (docstring) @comment.documentation
+
+; Operators
+[
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+  "**"
+] @operator
+
+; Punctuation
+[
+  "("
+  ")"
+  ":"
+  ","
+  "."
+] @punctuation.delimiter
