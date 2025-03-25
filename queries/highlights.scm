@@ -21,10 +21,11 @@
 ; Parameters
 (parameter 
   name: (identifier) @parameter
-  type: (type (identifier) @type))
+  type: (type) @type)
 
 ; Types
-(type (identifier) @type)
+; Assuming types can be just identifiers for now
+(type) @type
 
 ; Literals
 (number) @number
