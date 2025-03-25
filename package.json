@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tree-sitter generate && node-gyp build && tree-sitter build-wasm",
+    "build": "tree-sitter generate && node-gyp build && tree-sitter build -w",
     "generate": "tree-sitter generate"
   },
   "keywords": [],

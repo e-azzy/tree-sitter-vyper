@@ -15,15 +15,14 @@ module.exports = grammar({
 
   rules: {
     // Source file with precedence
-    source_file: $ => prec.left(2, repeat(choice(
+    source_file: $ => repeat(choice(
       $.comment,
       $.import_statement,
       $.constant_definition,
       $.variable_definition,
-      $.decorator,
       $.function_definition,
       $.whitespace
-    ))),
+    )),
 
     // Basic tokens
     identifier: $ => /[a-zA-Z_]\w*/,
@@ -40,13 +39,6 @@ module.exports = grammar({
     ),
 
     whitespace: $ => /\s+/,
-
-    // Decorators
-    decorator: $ => seq(
-      '@',
-      $.identifier,
-      optional(seq('(', optional($.argument_list), ')'))
-    ),
 
     // Constants and Variables
     constant_definition: $ => seq(
@@ -67,9 +59,9 @@ module.exports = grammar({
       $.expression
     ),
 
-    // Function Definition with precedence
+    // Function Definition with decorators handled first
     function_definition: $ => prec.left(1, seq(
-      repeat($.decorator),
+      repeat($.decorator), // Move decorator repetition here
       'def',
       $.identifier,
       '(',
@@ -133,12 +125,13 @@ module.exports = grammar({
       $.expression
     )),
 
-    call_expression: $ => seq(
+    // Call Expression: Only after identifying the expression
+    call_expression: $ => prec(10, seq(
       $.expression,
       '(',
       optional($.argument_list),
       ')'
-    ),
+    )),
 
     argument_list: $ => seq(
       $.expression,
@@ -152,7 +145,8 @@ module.exports = grammar({
       $.identifier
     ),
 
-    assert_expression: $ => seq('assert', $.expression), // Isolate assert
+    // Make assert its own high-precedence expression
+    assert_expression: $ => prec(20, seq('assert', $.expression)), 
 
     // Literals
     number: $ => choice(
@@ -178,7 +172,13 @@ module.exports = grammar({
     import_statement: $ => seq(
       'import',
       $.identifier
+    ),
+
+    // Decorators moved here
+    decorator: $ => seq(
+      '@',
+      $.identifier,
+      optional(seq('(', optional($.argument_list), ')'))
     )
   },
 });
-

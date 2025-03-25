@@ -34,6 +34,55 @@
     }
   },
   {
+    "type": "assert_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {},
@@ -46,7 +95,7 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "expression",
           "named": true
         }
       ]
@@ -91,6 +140,25 @@
     }
   },
   {
+    "type": "decorator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument_list",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "docstring",
     "named": true,
     "fields": {}
@@ -103,6 +171,18 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "assert_expression",
+          "named": true
+        },
+        {
+          "type": "attribute_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
         {
           "type": "call_expression",
           "named": true
@@ -131,6 +211,10 @@
       "required": true,
       "types": [
         {
+          "type": "decorator",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -150,7 +234,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -270,6 +354,10 @@
           "named": true
         },
         {
+          "type": "variable_definition",
+          "named": true
+        },
+        {
           "type": "whitespace",
           "named": true
         }
@@ -305,7 +393,34 @@
     }
   },
   {
+    "type": "variable_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "#",
+    "named": false
+  },
+  {
+    "type": "%",
     "named": false
   },
   {
@@ -317,11 +432,35 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "**",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
   {
+    "type": "-",
+    "named": false
+  },
+  {
     "type": "->",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "/",
     "named": false
   },
   {
@@ -330,6 +469,10 @@
   },
   {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "@",
     "named": false
   },
   {
@@ -342,6 +485,10 @@
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "assert",
     "named": false
   },
   {
@@ -365,10 +512,6 @@
     "named": true
   },
   {
-    "type": "from",
-    "named": false
-  },
-  {
     "type": "hex_number",
     "named": true
   },
@@ -383,6 +526,10 @@
   {
     "type": "octal_number",
     "named": true
+  },
+  {
+    "type": "public",
+    "named": false
   },
   {
     "type": "whitespace",
