@@ -13,13 +13,19 @@
 
 ; Function definitions
 (function_definition 
-  name: (identifier) @function)
+  (identifier) @function)
 
 ; Types
-(type (identifier) @type)
+(type 
+  (identifier) @type)
 
 ; Numbers
 (number) @number
+(decimal_number) @number
+(hex_number) @number
+(binary_number) @number
+(octal_number) @number
+(float_number) @number
 
 ; Strings
 (string) @string
